@@ -1,7 +1,11 @@
+import cpl from '/cpl.png';
+import './logo.css';
+
 function Logo() {
   return (
     <div className="logo-container">
-      <h3>Watch a Movie with Casey</h3>
+      <img className="logo-image" src={cpl} alt="cpl logo" />
+      <h1 className='logo-text'>OURFLIX</h1>
     </div>
   );
 }

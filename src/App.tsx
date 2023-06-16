@@ -1,19 +1,48 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from './Logo';
 import './App.css';
 
 const App: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [validPhoneNumber, setValidPhoneNumber] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const handlePhoneNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPhoneNumber(event.target.value);
   };
 
   const handlePhoneNumberSubmit = () => {
-    // Perform validation on the phone number here
-    setValidPhoneNumber(true);
+    console.log("open")
+    console.log(modalOpen)
+    setModalOpen(true);
   };
+
+  const handleModalSubmit = () => {
+    setValidPhoneNumber(true);
+    setModalOpen(false);
+  };
+
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (modalOpen && event.target instanceof HTMLElement && !event.target.closest('.Modal-content')) {
+        handleModalClose();
+      }
+    };
+
+    if (modalOpen) {
+      document.addEventListener('mousedown', handleOutsideClick);
+    } else {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [modalOpen, handleModalClose]);
+
 
   return (
     <div className="App">
@@ -38,10 +67,20 @@ const App: React.FC = () => {
           <img className="Section-image" src="big-eye.jpg" alt="Get Started" />
           <div className="Section-content">
             <h3>Get Started</h3>
-            <p>What kind of movie watcher are you? Choose your favorite genres and preferences so Casey can suggest the best movies for you to watch together.</p>
+            <p>Lorem Ipsum yadayadayada I really want this girl's phone number, probably never gonna happen. Cowabunga dudes.</p>
           </div>
         </section>
       </div>
+
+      {modalOpen && (
+        <div className="Modal">
+          <div className="Modal-content">
+            <h2>Enter your phone number to continue</h2>
+            <input type="text" value={phoneNumber} onChange={handlePhoneNumberChange} />
+            <button onClick={handleModalSubmit}>Submit</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
