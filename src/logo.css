@@ -1,0 +1,61 @@
+h1 {
+    color: rgb(229, 9, 20);
+    filter: none !important;
+}
+.logo-container {
+    position: absolute;
+    top: 3%;
+    left: 3%;
+    z-index: 2;
+}
+
+.logo-container > h1 {
+    margin-top: 0px;
+    text-shadow: 1.5px 1.5px 1.5px black;
+    color: rgb(229, 9, 20);
+    font-size: 3vw;
+}
+
+.logo-image {
+    width: 5vw;
+}
+
+@media (min-width: 300px) {
+    .logo-container > h1 {
+        font-size: 4vw;
+    }
+
+    .logo-image {
+        width: 5vw;
+    }
+}
+
+@media (min-width: 768px) {
+    .logo-container > h1 {
+        font-size: 2vw;
+    }
+
+    .logo-image {
+        width: 3vw;
+    }
+}
+
+@media (min-width: 1024px) {
+    .logo-container > h1 {
+        font-size: 1.5vw;
+    }
+
+    .logo-image {
+        width: 2.5vw;
+    }
+}
+
+@media (min-width: 1440px) {
+    .logo-container > h1 {
+        font-size: 1vw;
+    }
+
+    .logo-image {
+        width: 2vw;
+    }
+}
