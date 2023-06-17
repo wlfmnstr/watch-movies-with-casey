@@ -17,26 +17,27 @@ h1 {
 }
 
 .logo-image {
-    width: 5vw;
+    opacity: 10%;
+    width: 7vw;
 }
 
 @media (min-width: 300px) {
     .logo-container > h1 {
-        font-size: 4vw;
+        font-size: 5vw;
     }
 
     .logo-image {
-        width: 5vw;
+        width: 9vw;
     }
 }
 
 @media (min-width: 768px) {
     .logo-container > h1 {
-        font-size: 2vw;
+        font-size: 3vw;
     }
 
     .logo-image {
-        width: 3vw;
+        width: 4vw;
     }
 }
 
@@ -52,10 +53,10 @@ h1 {
 
 @media (min-width: 1440px) {
     .logo-container > h1 {
-        font-size: 1vw;
+        font-size: 1.8vw;
     }
 
     .logo-image {
-        width: 2vw;
+        width: 4vw;
     }
 }
