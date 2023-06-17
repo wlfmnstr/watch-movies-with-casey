@@ -59,53 +59,63 @@ const App: React.FC = () => {
   const carouselItems = [
     {
       title: 'Awesome Movie',
+      titleFont: 'awesome-font',
       image: '/big-eye.jpg',
       description: 'Awesome Movie, Awesome Us'
     },
     {
       title: 'Romantic Movie',
+      titleFont: 'romantic-font',
       image: 'couple-and-dog.png',
       description: 'Romantic Movie, Romantic Us (+Leo)'
     },
     {
       title: 'Sad Movie',
+      titleFont: 'sad-font',
       image: 'hairy-4-legs.jpg',
       description: 'Sad Movie, Sad Us Womp Womp'
     },
     {
       title: 'Happy Movie',
+      titleFont: 'awesome-font',
       image: 'big-smile-monster.jpg',
       description: 'Happy Movie, Happy Us'
     },
     {
       title: 'Pyschopath Movie',
+      titlePath: 'romantic-font',
       image: 'pyschopaths-burn-window.png',
       description: 'Pyschopath buring their windows, DO NOT WATCH THIS MOVIE WTF',
     },
     {
       title: 'Boxy Movie',
+      titleFont: 'sad-font',
       image: 'box-pattern.jpg',
       description: 'Boxy Movie, Boxy Us'
     },
     {
       title: 'Cartoon Movie',
+      titleFont: 'awesome-font',
       image: 'boxes-cartoon.jpg',
       description: 'Cartoon Movie, Cartoon Us'
     },
     {
       title: 'Clock Movie',
+      titleFont: 'romantic-font',
       image: 'clocks-deepmind.jpg',
       description: 'Clock Movie, Clock Us?'
     },
     {
       title: 'Metal Movie',
+      titleFont: 'sad-font',
       image: 'metal-boxes-deepmind.jpg',
       description: 'Metal Move, Metal Us I guess..'
     },
     {
       title: 'Plant Movie',
+      titleFont: 'awesome-font',
       image: 'plants-cube-deepmind.jpg',
-      description: 'Fucking Plants \'n shit'
+      description: 'Plants \'n shit'
     }
   ];
 
@@ -131,8 +141,10 @@ const App: React.FC = () => {
         <div className="movie-strip">
           {carouselItems.map((item, i) => (
             <div key={i} className="movie-item">
-              <img className="movie-image" src={item.image} alt={item.title} />
-              <div className="movie-title">{item.title}</div>
+              <div className='movie-image-container'>
+                <img className="movie-image" src={item.image} alt={item.title} />
+              </div>
+              <div className={`movie-title ${item.titleFont}`} >{item.title}</div>
               <div className="movie-description">{item.description}</div>
             </div>
           ))}
@@ -143,11 +155,11 @@ const App: React.FC = () => {
         <div className="Modal">
           <div className="Modal-content">
             <h2>Enter phone number :)</h2>
-            <PhoneNumberInput onPhoneNumberChange={handlePhoneNumberChange} phoneNumber={phoneNumber}/>
+            <PhoneNumberInput onPhoneNumberChange={handlePhoneNumberChange} phoneNumber={phoneNumber} />
             <h3>Add a note?</h3>
             <textarea placeholder='Say nice things here...' value={note} onChange={handleNoteChange}>
             </textarea>
-            <span style={{textDecoration: 'line-through', transform: 'rotate(-3deg)',display: 'inline-block', fontSize: '1.2rem', fontWeight: 'lighter', letterSpacing: '0.1rem', textDecorationColor: 'red'}}>text casey</span>
+            <span style={{ textDecoration: 'line-through', transform: 'rotate(-3deg)', display: 'inline-block', fontSize: '1.2rem', fontWeight: 'lighter', letterSpacing: '0.1rem', textDecorationColor: 'red' }}>text casey</span>
             <button onClick={handleModalSubmit}>Request Access</button>
           </div>
         </div>

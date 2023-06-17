@@ -26,6 +26,32 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Zeyada';
+    src: url('/Zeyada/Zeyada-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Reenie Beanie';
+    src: url('/Reenie_Beanie/ReenieBeanie-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gloria Hallelujah';
+    src: url('/Gloria_Hallelujah/GloriaHallelujah-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Kablammo';
+    src: url('/Kablammo/Kablammo-Regular-VariableFont_MORF.ttf') format('truetype');
+}
+
 body,
 html {
     font-family: 'Netflix Sans', cursive;
