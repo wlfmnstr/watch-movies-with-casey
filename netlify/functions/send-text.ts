@@ -24,7 +24,7 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
             body: JSON.stringify({ message: 'Message sent successfully' })
         };
     } catch (error) {
-        console.error(error);
+        console.error("Error sending message: ", error);
         return {
             statusCode: 500,
             body: JSON.stringify({ message: 'Error sending message' })

@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Logo from './Logo';
 import './App.css';
 import './Carousel.css';
 import './Modal.css';
 import './Title.css';
 import PhoneNumberInput from './PhoneNumberInput';
+import { isPossiblePhoneNumber, isValidPhoneNumber } from 'react-phone-number-input';
 
 const App: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -24,15 +25,61 @@ const App: React.FC = () => {
     setModalOpen(true);
   };
 
-  const handleModalSubmit = () => {
-    setValidPhoneNumber(true);
-    setModalOpen(false);
-    // Call the API to send the text message, this is using the netlify function
+  type ModalElements = {
+    phoneNumberInput?: HTMLInputElement | null;
+    noteTextarea?: HTMLTextAreaElement | null;
+    modal?: HTMLDivElement | null;
 
-    fetch('/.netlify/functions/send-text', {
-      method: 'POST',
-      body: JSON.stringify({ phoneNumber, note })
-    });
+  };
+
+  const handleModalSubmit = async (event: React.MouseEvent<HTMLButtonElement>, modalElements: ModalElements) => {
+    let button: HTMLButtonElement = event.currentTarget;
+    let modal = modalElements.modal;
+    let phoneNumberInput = modalElements.phoneNumberInput;
+    let noteTextarea = modalElements.noteTextarea;
+    let validNumber = isValidPhoneNumber(phoneNumber, 'US') && isPossiblePhoneNumber(phoneNumber, 'US');
+
+    if (!validNumber && note.length <= 3) {
+      modal?.classList.add('wiggle');
+      setTimeout(() => modal?.classList.remove('wiggle'), 1000);
+      return;
+    } else if (!validNumber) {
+      phoneNumberInput?.classList.add('wiggle');
+      setTimeout(() => phoneNumberInput?.classList.remove('wiggle'), 1000);
+      return;
+    } else if (note.length <= 3) {
+      noteTextarea?.classList.add('wiggle');
+      setTimeout(() => noteTextarea?.classList.remove('wiggle'), 1000);
+      return;
+    } else {
+      try {
+        await fetch('/.netlify/functions/send-text', {
+          method: 'POST',
+          body: JSON.stringify({ phoneNumber, note })
+        }).then(res => {
+          if (res.ok) {
+            button.innerHTML = 'Sent!';
+            button.classList.add('success');
+            setTimeout(() => {
+              button.innerHTML = 'Nice.';
+              button.classList.remove('success');
+              setPhoneNumber('');
+              setNote('');
+              setModalOpen(false);
+            }, 3000);
+          } else {
+            button.innerHTML = 'Error!';
+            button.classList.add('error');
+            setTimeout(() => {
+              button.innerHTML = 'Send';
+              button.classList.remove('error');
+            }, 3000);
+          }
+        });
+      } catch (error) {
+        alert(error);
+      }
+    }
   };
 
   const handleModalClose = () => {
@@ -119,6 +166,10 @@ const App: React.FC = () => {
     }
   ];
 
+  const modalRef = useRef<HTMLDivElement>(null);
+  const phoneNumberInputRef = useRef<HTMLInputElement>(null);
+  const noteTextareaRef = useRef<HTMLTextAreaElement>(null);
+
   return (
     <div className="App">
       <Logo />
@@ -152,15 +203,28 @@ const App: React.FC = () => {
       </div>
 
       {modalOpen && (
-        <div className="Modal">
+        <div className="Modal" ref={modalRef}>
           <div className="Modal-content">
-            <h2>Enter phone number :)</h2>
-            <PhoneNumberInput onPhoneNumberChange={handlePhoneNumberChange} phoneNumber={phoneNumber} />
+            <h2>Phone Number</h2>
+            <PhoneNumberInput
+              onPhoneNumberChange={handlePhoneNumberChange}
+              phoneNumber={phoneNumber}
+              inputRef={phoneNumberInputRef}
+            />
             <h3>Add a note?</h3>
-            <textarea placeholder='Say nice things here...' value={note} onChange={handleNoteChange}>
+            <textarea
+              placeholder='Say nice things here...'
+              value={note}
+              onChange={handleNoteChange}
+              ref={noteTextareaRef}
+            >
             </textarea>
-            <span style={{ textDecoration: 'line-through', transform: 'rotate(-3deg)', display: 'inline-block', fontSize: '1.2rem', fontWeight: 'lighter', letterSpacing: '0.1rem', textDecorationColor: 'red' }}>text casey</span>
-            <button onClick={handleModalSubmit}>Request Access</button>
+            <span style={{ textDecoration: 'line-through', transform: 'rotate(-3deg)', display: 'inline-block', fontSize: '1.2rem', fontWeight: 'lighter', letterSpacing: '0.1rem', textDecorationColor: 'red' }}>give casey your #</span>
+            <button onClick={(event: React.MouseEvent<HTMLButtonElement>) => handleModalSubmit(event, {
+              phoneNumberInput: phoneNumberInputRef.current,
+              noteTextarea: noteTextareaRef.current,
+              modal: modalRef.current
+            })}>Request Access</button>
           </div>
         </div>
       )}
