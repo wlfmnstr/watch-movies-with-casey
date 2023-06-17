@@ -4,26 +4,35 @@ import './App.css';
 import './Carousel.css';
 import './Modal.css';
 import './Title.css';
+import PhoneNumberInput from './PhoneNumberInput';
 
 const App: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [note, setNote] = useState('');
   const [validPhoneNumber, setValidPhoneNumber] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
+  const handlePhoneNumberChange = (value?: string) => {
+    setPhoneNumber(value || '');
+  };
 
-  const handlePhoneNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPhoneNumber(event.target.value);
+  const handleNoteChange = (event: any) => {
+    setNote(event.target.value || '');
   };
 
   const handlePhoneNumberSubmit = () => {
-    console.log("open")
-    console.log(modalOpen)
     setModalOpen(true);
   };
 
   const handleModalSubmit = () => {
     setValidPhoneNumber(true);
     setModalOpen(false);
+    // Call the API to send the text message, this is using the netlify function
+
+    fetch('/.netlify/functions/send-text', {
+      method: 'POST',
+      body: JSON.stringify({ phoneNumber, note })
+    });
   };
 
   const handleModalClose = () => {
@@ -133,9 +142,13 @@ const App: React.FC = () => {
       {modalOpen && (
         <div className="Modal">
           <div className="Modal-content">
-            <h2>Enter your phone number to continue</h2>
-            <input type="text" value={phoneNumber} onChange={handlePhoneNumberChange} />
-            <button onClick={handleModalSubmit}>Submit</button>
+            <h2>Enter phone number :)</h2>
+            <PhoneNumberInput onPhoneNumberChange={handlePhoneNumberChange} phoneNumber={phoneNumber}/>
+            <h3>Add a note?</h3>
+            <textarea placeholder='Say nice things here...' value={note} onChange={handleNoteChange}>
+            </textarea>
+            <span style={{textDecoration: 'line-through', transform: 'rotate(-3deg)',display: 'inline-block', fontSize: '1.2rem', fontWeight: 'lighter', letterSpacing: '0.1rem', textDecorationColor: 'red'}}>text casey</span>
+            <button onClick={handleModalSubmit}>Request Access</button>
           </div>
         </div>
       )}

@@ -14,13 +14,20 @@ MODAL STYLES
     align-items: center;
     width: 100%;
     height: 100%;
+    color: black;
 }
 
 .Modal-content {
+    display: flex;
+    flex-direction: column;
     background-color: white;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.Modal-content > h2 {
+    color: black;
 }
 
 @media (min-width: 200px) {
