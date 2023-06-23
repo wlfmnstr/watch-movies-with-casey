@@ -9,6 +9,7 @@ CAROUSEL STYLES
 .movie-strip {
     display: flex;
     height: 20vh;
+    z-index: -11;
     /* flex-direction: row; */
     /* justify-content: center; */
     /* align-items: center; */

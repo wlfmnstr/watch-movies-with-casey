@@ -6,11 +6,11 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 
 console.log("Hello outside function!")
 
-const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
-    console.log('hello world')
-    const client = new Twilio(accountSid, authToken)
+async function handler(event: HandlerEvent, context: HandlerContext) {
+    console.log('hello world');
+    const client = new Twilio(accountSid, authToken);
     const { phoneNumber, note } = JSON.parse(event.body!);
-    const msgContent = `Phone: ${phoneNumber} sent note: ${note}`
+    const msgContent = `Phone: ${phoneNumber} sent note: ${note}`;
     console.log(phoneNumber, note);
     try {
         const msg = await client.messages.create({
@@ -30,6 +30,6 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
             body: JSON.stringify({ message: 'Error sending message' })
         };
     }
-};
+}
 
 export { handler };

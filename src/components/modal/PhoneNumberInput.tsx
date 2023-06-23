@@ -8,6 +8,7 @@ interface PhoneNumberInputProps {
 }
 
 function PhoneNumberInput({ inputRef, phoneNumber, onPhoneNumberChange }: PhoneNumberInputProps) {
+    
     const handlePhoneNumberChange = (value?: string) => {
         onPhoneNumberChange(value);
     };

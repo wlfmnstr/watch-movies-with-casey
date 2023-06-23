@@ -56,10 +56,14 @@ body,
 html {
     font-family: 'Netflix Sans', cursive;
     /* background: linear-gradient(to bottom, #000000, #141414); */
-    background: #000000;
+    /* background: #000000; */
+    /* background-image: url('/cat.jpg'); */
+    background-position: center;
+    background-size: cover;
+    background-color: white;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    /* overflow: hidden; */
     height: 100%;
 }
 
@@ -72,20 +76,16 @@ html {
 }
 
 .App {
-    /* background: linear-gradient(to bottom, #000000, #141414); */
-    /* background: linear-gradient(to center, black, black); */
     color: #fff;
     text-align: center;
-    /* min-height: 100vh; */
     height: 100%;
-    display: flex;
-    /* padding: 50px ; */
+    width: 100%;
 }
 
-.blurred {
-    /* filter: blur(5px) !important; */
-    opacity: 35%;
-}
+/* .blurred {
+    filter: blur(5px) !important;
+    opacity: 100%;
+} */
 
 /* @media (prefers-color-scheme: dark) {
     :root {
