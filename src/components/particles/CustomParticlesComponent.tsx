@@ -28,6 +28,7 @@ import { loadPolygonPath } from "tsparticles-path-polygon";
 import { loadRoundedRectShape } from "tsparticles-shape-rounded-rect";
 import { loadSimplexNoisePath } from "tsparticles-path-simplex-noise";
 import { loadSpiralShape } from "tsparticles-shape-spiral";
+import NetflixButton from "../buttons/Button";
 
 const CustomParticlesComponent = () => {
   const particlesInit = useCallback(async (engine: Engine) => {
@@ -73,6 +74,14 @@ const CustomParticlesComponent = () => {
       init={particlesInit}
       loaded={particlesLoaded}
       options={CustomParticlesConfig}
+      className="CustomParticlesComponent"
+      style={{
+        position: "absolute",
+        display: "block",
+        width: "100%",
+        height: "100%",
+        zIndex: 1
+      }}
     />
   );
 };

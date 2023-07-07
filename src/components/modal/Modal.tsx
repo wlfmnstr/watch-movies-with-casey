@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PhoneNumberInput from './PhoneNumberInput.tsx';
-import Confetti from 'react-confetti';
 import { isPossiblePhoneNumber, isValidPhoneNumber } from 'react-phone-number-input';
 
 type ModalProps = {

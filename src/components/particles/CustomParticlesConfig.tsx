@@ -4,7 +4,7 @@ import type { ISourceOptions } from "tsparticles-engine";
 const CustomParticlesConfig: ISourceOptions = {
     name: "Image Mask",
     smooth: true,
-    interactivity: {
+    in51teractivity: {
         events: {
             // onHover: {
             //     enable: false,
@@ -16,7 +16,7 @@ const CustomParticlesConfig: ISourceOptions = {
             //     },
             // },
             onClick: {
-                enable: true,
+                enable: false,
                 mode: "push",
             },
             onhover: {
@@ -26,54 +26,28 @@ const CustomParticlesConfig: ISourceOptions = {
                     force: 60,
                     smooth: 10,
                 },
-                mode: ["bubble"] //grab bubble repulse push remove
+                mode: ["repulse"] //grab bubble repulse push remove
             },
         },
         modes: {
             bubble: {
-                distance: 50,
-                duration: 0.1,
+                distance: 10,
+                duration: 0.5,
                 size: 10,
                 opacity: 0.8,
                 color: "#ffffff",
                 mix: true,
             },
             repulse: {
-                // decay: {
-                //     value: 0.5,
-                // },
-                distance: 20,
-                speed: 2,
-                factor: 50,
-                duration: 50,
-                value: {
-                    min: 1,
-                    max: 10,
-                }
+                distance: 200,
+                speed: 0.05,
+                // factor: 50,
+                // duration: 40,
             },
             attract: {
                 distance: 200,
                 duration: 0.4,
             }
-        },
-    },
-    emitters: {
-        direction: "top",
-        life: {
-            count: 300,
-            duration: 0.001,
-            delay: 0.001,
-        },
-        rate: {
-            delay: 0.001,
-            quantity: 1,
-        },
-        size: {
-            width: 100,
-            height: 0,
-        },
-        position: {
-            random: true,
         },
     },
     particles: {
@@ -83,7 +57,7 @@ const CustomParticlesConfig: ISourceOptions = {
             // decay: -0.001,
             // random: true,
             enable: true,
-            speed: 0.2,
+            speed: 0.4,
             out_mode: "out",
             gravity: {
                 enable: false,
@@ -94,7 +68,7 @@ const CustomParticlesConfig: ISourceOptions = {
         },
     
         number: {
-            value: 6000
+            value: 3000
             // max: number;
             // value: number;
             // value: 3000,
@@ -104,8 +78,8 @@ const CustomParticlesConfig: ISourceOptions = {
         },
         size: {
             value: {
-                min: 1,
-                max: 3,
+                min: 1.5,
+                max: 3.6,
             },
         },
         opacity: {
@@ -113,8 +87,9 @@ const CustomParticlesConfig: ISourceOptions = {
                 enable: true,
                 startValue: "min",
                 mode: "increase",
-                minimumValue: 0.1,
-                speed: 0.8,
+                minimumValue: 0,
+                speed: 3,
+                count: 1
             }
         }
     },
@@ -136,6 +111,10 @@ const CustomParticlesConfig: ISourceOptions = {
         repeat: "no-repeat",
         size: "cover",
     },
+    fullScreen: {
+        enable: false,
+        zIndex: 0,
+    }
 };
 
 export default CustomParticlesConfig;
