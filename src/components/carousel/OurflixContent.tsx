@@ -1,6 +1,7 @@
 import { carouselItems } from './carousel-items.ts';
 
 export const OurflixContent = () => {
+  const validPhoneNumber = true; // Define validPhoneNumber as a boolean variable
   return <div className={`Content-wrapper ${validPhoneNumber ? '' : 'blurred'} content`}>
     <div className="movie-strip">
       {carouselItems.map((item, i) => (

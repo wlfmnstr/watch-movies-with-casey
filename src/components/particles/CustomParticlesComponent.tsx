@@ -31,17 +31,15 @@ import { loadSpiralShape } from "tsparticles-shape-spiral";
 
 const CustomParticlesComponent = () => {
   const particlesInit = useCallback(async (engine: Engine) => {
-    console.log(engine);
-
     // you can initialize the tsParticles instance (engine) here, adding custom shapes or presets
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
     // starting from v2 you can add only the features you need reducing the bundle size
     await loadFull(engine);
-    await loadPolygonMaskPlugin(engine);
-    await loadPolygonPath(engine);
+    // await loadPolygonMaskPlugin(engine);
+    // await loadPolygonPath(engine);
     await loadCanvasMaskPlugin(engine);
-    await loadBubbleShape(engine);
-    await loadCurvesPath(engine);
+    // await loadBubbleShape(engine);
+    // await loadCurvesPath(engine);
     await loadEasingBackPlugin();
     await loadEasingCircPlugin();
     await loadEasingCubicPlugin();
@@ -50,22 +48,23 @@ const CustomParticlesComponent = () => {
     await loadEasingQuintPlugin();
     await loadEasingSinePlugin();
     await loadGradientUpdater(engine);
-    await loadHeartShape(engine);
-    await loadHsvColorPlugin();
-    await loadInfectionPlugin(engine);
-    await loadLightInteraction(engine);
+    // await loadHeartShape(engine);
+    // await loadHsvColorPlugin();
+    // await loadInfectionPlugin(engine);
+    // await loadLightInteraction(engine);
     await loadMotionPlugin(engine);
-    await loadMultilineTextShape(engine);
-    await loadOrbitUpdater(engine);
-    await loadParticlesRepulseInteraction(engine);
-    await loadPerlinNoisePath(engine);
-    await loadRoundedRectShape(engine);
-    await loadSimplexNoisePath(engine);
-    await loadSpiralShape(engine);
+    // await loadMultilineTextShape(engine);
+    // await loadOrbitUpdater(engine);
+    // await loadParticlesRepulseInteraction(engine);
+    // await loadPerlinNoisePath(engine);
+    // await loadRoundedRectShape(engine);
+    // await loadSimplexNoisePath(engine);
+    // await loadSpiralShape(engine);
   }, []);
 
   const particlesLoaded = useCallback(async (container: Container | undefined) => {
-    await console.log(container);
+    // particles are loaded and ready to be used
+    console.log(container);
   }, []);
   return (
     <Particles

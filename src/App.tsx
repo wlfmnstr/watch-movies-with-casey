@@ -12,6 +12,7 @@ import './components/title/Title.css';
 // import SeaAnemoneComponent from './components/particles/SeaAnemoneComponent.tsx';
 // import CustomParticlesComponent from './CustomParticlesComponent';
 import ParticlesContainer from './components/particles/CustomParticlesComponent.tsx';
+import ParticlesContainer2 from './components/particles/CustomParticlesComponent2.tsx';
 import styled from 'styled-components';
 
 type MaskContextType = {
@@ -37,8 +38,8 @@ export default function App() {
   // const [showContent, setShowContent] = useState(false);
   // const [showModal, setShowModal] = useState(false);
   // const [phoneNumberStatus, setPhoneNumberStatus] = useState(false);
-  const [maskStyles, setMaskStyles] = useState<React.CSSProperties>({})
-  const [particlesLoaded, setParticlesLoaded] = useState<boolean>(false);
+  // const [maskStyles, setMaskStyles] = useState<React.CSSProperties>({})
+  // const [particlesLoaded, setParticlesLoaded] = useState<boolean>(false);
 
   // const toggleLanding = () => setShowLanding(!showLanding);
   // const toggleTitle = () => setShowTitle(!showTitle);
@@ -47,18 +48,18 @@ export default function App() {
   // const toggleModal = () => setShowModal(!showModal);
 
   return (
-    <MaskContext.Provider value={{ styles: maskStyles, setStyles: setMaskStyles }}>
+    
       <StyledApp>
         {/* {<Landing />} */}
         {/* {<Mask />} */}
         {/* {<SeaAnemoneComponent />} */}
         {/* {<CustomParticlesComponent />} */}
-        <ParticlesContainer />
+        {/* <ParticlesContainer /> */}
+        <ParticlesContainer2 />
         {/* {showLogo && <Logo />} */}
         {/* {showTitle && <TitleContainer toggleModal={toggleModal} />} */}
         {/* {showContent && <OurflixContent />} */}
         {/* {showModal && <Modal changePhoneNumberStatus={setPhoneNumberStatus} />} */}
       </StyledApp>
-    </MaskContext.Provider>
   );
 }

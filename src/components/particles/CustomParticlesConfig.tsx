@@ -1,4 +1,3 @@
-import { start } from "repl";
 import type { ISourceOptions } from "tsparticles-engine";
 
 const CustomParticlesConfig: ISourceOptions = {
@@ -6,15 +5,6 @@ const CustomParticlesConfig: ISourceOptions = {
     smooth: true,
     interactivity: {
         events: {
-            // onHover: {
-            //     enable: false,
-            //     mode: "bubble",
-            //     parallax: {
-            //         enable: true,
-            //         force: 70,
-            //         smooth: 30,
-            //     },
-            // },
             onClick: {
                 enable: true,
                 mode: "push",
@@ -28,73 +18,62 @@ const CustomParticlesConfig: ISourceOptions = {
                 },
                 mode: ["bubble"] //grab bubble repulse push remove
             },
-        },
-        modes: {
-            bubble: {
-                distance: 50,
-                duration: 0.1,
-                size: 10,
-                opacity: 0.8,
-                color: "#ffffff",
-                mix: true,
-            },
-            repulse: {
-                // decay: {
-                //     value: 0.5,
-                // },
-                distance: 20,
-                speed: 2,
-                factor: 50,
-                duration: 50,
-                value: {
-                    min: 1,
-                    max: 10,
-                }
-            },
-            attract: {
-                distance: 200,
-                duration: 0.4,
-            }
-        },
-    },
-    emitters: {
-        direction: "top",
-        life: {
-            count: 300,
-            duration: 0.001,
-            delay: 0.001,
-        },
-        rate: {
-            delay: 0.001,
-            quantity: 1,
-        },
-        size: {
-            width: 100,
-            height: 0,
-        },
-        position: {
-            random: true,
-        },
+        }
     },
     particles: {
+        bounce: {
+            horizontal: {
+                random: {
+                    enable: true,
+                    minimumValue: 100
+                },
+                value: 1000
+            },
+            vertical: {
+                random: {
+                    enable: true,
+                    minimumValue: 100
+                },
+                value: 1000
+            }
+        },
         move: {
             direction: "outside",
-            distance: 13,
+            distance: 5,
             // decay: -0.001,
             // random: true,
-            enable: true,
-            speed: 0.2,
-            out_mode: "out",
+            enable: false,
+            // vibrate: true,
+            speed: .5,
+            out_mode: "none",
             gravity: {
                 enable: false,
                 acceleration: 1,
                 inverse: true,
-                maxSpeed: 1
+                maxSpeed: 10
+            },
+            trail: {
+                enable: true,
+                length: 10,
+                fill: {
+                    color: "#000000"
+                }
+                // fillColor: "#1e8b12",
             }
+
         },
-    
+
         number: {
-            value: 6000
+            value: 1000,
+            // density: {
+            //     enable: true,
+            //     height: 1000,
+            //     width: 1000,
+            //     area: 100,
+            //     factor: 1000,
+            //     value_area: 1000,
+            // },
+            max: 10000,
             // max: number;
             // value: number;
             // value: 3000,
@@ -104,8 +83,8 @@ const CustomParticlesConfig: ISourceOptions = {
         },
         size: {
             value: {
-                min: 1,
-                max: 3,
+                min: .7,
+                max: .9,
             },
         },
         opacity: {
@@ -113,7 +92,7 @@ const CustomParticlesConfig: ISourceOptions = {
                 enable: true,
                 startValue: "min",
                 mode: "increase",
-                minimumValue: 0.1,
+                minimumValue: 0.9,
                 speed: 0.8,
             }
         }
@@ -137,5 +116,7 @@ const CustomParticlesConfig: ISourceOptions = {
         size: "cover",
     },
 };
+
+
 
 export default CustomParticlesConfig;
